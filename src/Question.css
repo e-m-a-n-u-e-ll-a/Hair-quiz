@@ -1,0 +1,101 @@
+.outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+input:hover {
+    cursor: pointer;
+    background-color: #C3EDFF;
+}
+
+.selected {
+    background-color: #C3EDFF;
+}
+
+.buttons {
+    color: #1C2635;
+    display: flex;
+    margin-top: 30px;
+
+    .back {
+        background: 0;
+        text-decoration: underline;
+        color: #677487;
+    }
+
+    .back:hover {
+        border: 0;
+    }
+
+    .next::after {
+        content: url('./assets/Vector.png');
+        display: inline-block;
+        margin-left: 10px;
+    }
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1100px;
+    height: 244px;
+    margin: 352px 50px;
+}
+
+input {
+    font-size: 16px;
+    color: #1C2635;
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffffff;
+    border: 1px solid #5BC1ED;
+    border-radius: 8px;
+    padding: 7px 70px 7px 7px;
+    height: 44px;
+}
+
+.progress-bar {
+    width: 101px;
+    position: relative;
+    bottom: 60px;
+}
+
+.progress-bar.first::after {
+    content: url('./assets/Frame 15.png');
+    margin-left: 50px;
+}
+
+.progress-bar.second::after {
+    content: url('./assets/Frame 1512.png');
+}
+
+.progress-bar.third::after {
+    content: url('./assets/Frame 16.png');
+}
+
+.progress-bar.fourth::after {
+    content: url('./assets/Frame 20.png');
+}
+
+.progress-bar.fifth::after {
+    content: url('./assets/Frame 21.png');
+}
+
+@media screen and (max-width:950px) {
+    .outer {
+        flex-direction: column;
+    }
+
+    form {
+        margin-bottom: 200px;
+    }
+}

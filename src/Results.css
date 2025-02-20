@@ -1,0 +1,162 @@
+section.routine {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 539px;
+    background-image: url('./assets/Rectangle 48.png');
+    position: relative;
+
+    p {
+        width: 563px;
+        line-height: 24px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    button.retake {
+        color: #ffffff;
+        background-color: #ffffff00;
+        border: 1px solid #ffffff;
+        margin-top: 30px;
+        padding: 12px 50px;
+    }
+
+    button.retake:hover {
+        border: #ffffff00;
+    }
+}
+
+section.routine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+section.routine>* {
+    position: relative;
+    z-index: 2;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 36px;
+    border-radius: 8px;
+    position: absolute;
+    top: 500px;
+    z-index: 100;
+
+    h3 {
+        text-align: center;
+        font-size: 24px;
+        width: 100%;
+        font-weight: 600;
+        max-height: 85px;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+
+    .daily-routine {
+        background-color: #EEF7FB;
+        width: 350px;
+        height: 421px;
+        border-radius: 8px;
+       align-items: center;
+
+        p {
+            color: #1C2635;
+            width: 231px;
+            text-align: left;
+            line-height: 23px;
+            margin: 10px auto
+        }
+    }
+
+    .product {
+        width: 350px;
+        height: 420px;
+        position: relative;
+    }
+
+    img {
+        width: 100%;
+        height: 345px;
+        border-radius: 8px;
+    }
+
+    p.price {
+        color: #1C2635;
+        text-align: center;
+        width: 350px;
+        font-size: 19.5px;
+        margin-top: 0;
+    }
+
+    .heart {
+        width: 20px;
+        height: 18.35px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url('https://cdn-icons-png.flaticon.com/512/2/2267.png');
+        position: absolute;
+        left: 300px;
+        bottom: 340px;
+        cursor: pointer;
+    }
+
+    .heart.liked {
+        background-image: url('https://static.vecteezy.com/system/resources/previews/018/868/329/non_2x/red-heart-symbol-on-transparent-background-free-png.png');
+        position: absolute;
+        left: 300px;
+        bottom: 340px;
+        cursor: pointer;
+    }
+
+    .next {
+        content: url('./assets/Vector(3).png');
+        color: #1C2635;
+        background-color: #EEF7FB;
+        border-radius: 30.03px;
+        width: 50.06px;
+        height: 50.06px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .next::before {
+        content: url('./assets/Vector(1).png');
+    }
+
+}
+.page-indicators {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 480px;
+    height: 100px;
+}
+
+.page-indicator {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+}
+
+.page-indicator.active {
+    background-color: #5BC1ED;
+}
