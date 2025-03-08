@@ -1,0 +1,9 @@
+
+@media screen and (max-width: 1250px) {
+    .noto-serif-display-tag {
+       font-size: 17px !important;
+       width: 80% !important;
+       margin: 30px auto !important;
+       line-height: 30px !important;
+     }
+   }

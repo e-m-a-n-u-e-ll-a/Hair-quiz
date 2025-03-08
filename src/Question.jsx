@@ -5,11 +5,13 @@ import './Question.css';
 
 function Question({ questionText, savedAnswerKey, options, backLink, nextLink, number, buttonValue, buttonClass }) {
     const [answer, setAnswer] = useState('');
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const savedAnswer = localStorage.getItem(savedAnswerKey);
         if (savedAnswer) {
             setAnswer(savedAnswer);
+            setError('');
         }
     }, [savedAnswerKey]);
 
@@ -18,6 +20,14 @@ function Question({ questionText, savedAnswerKey, options, backLink, nextLink, n
         setAnswer(currentAnswer);
         localStorage.setItem(savedAnswerKey, currentAnswer);
     };
+
+    const handleNext = (e) => {
+        if (!answer) {
+            e.preventDefault()
+            setError('Please select an aswer.');
+        }
+   
+    }
 
     return (
         <div className='outer'>
@@ -34,11 +44,12 @@ function Question({ questionText, savedAnswerKey, options, backLink, nextLink, n
                         />
                     ))}
                 </div>
+                {error && <p className='error-message' style={{color: 'red'}}>{error}</p>}
                 <div className='buttons'>
                     <Link to={backLink}>
                         <button className='back'>Back</button>
                     </Link>
-                    <Link to={nextLink}>
+                    <Link to={nextLink} onClick={handleNext}>
                         <button className={buttonClass}>{buttonValue}</button>
                     </Link>
                 </div>

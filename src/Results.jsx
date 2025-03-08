@@ -10,16 +10,29 @@ function Results() {
     const [startIndex, setStartIndex] = useState(0);
     const [filteredData, setFilteredData] = useState([]);
     const [likedProducts, setLikedProducts] = useState([]);
+    const [error, setError] = useState(null)
     useEffect(() => {
         fetch('https://jeval.com.au/collections/hair-care/products.json?page=1')
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                return res.json();
+            })
             .then(data => {
                 setData({ products: data.products })
-                let filtered = filterProducts(data.products);
-                setFilteredData(filtered)
+                const filtered = filterProducts(data.products) || [];
+                if (filtered) {
+                    setFilteredData(filtered);
+                } else {
+                    setFilteredData([]);
+                }
                 console.log(filtered)
             })
-            .catch(error => console.error('Error fetching data:', error))
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                setError('Failed to load products. Please try again later.');
+            });
     }, []);
 
     useEffect(() => {
@@ -54,9 +67,9 @@ function Results() {
         const answers = getUserAnswers();
 
         const filtered = products.filter(product => {
-            const title = product.title.toLowerCase();
+            const title = product.title?.toLowerCase();
             const description = product.body_html?.toLowerCase() || '';
-            const tags = product.tags.map(tag => tag.toLowerCase());
+            const tags = product.tags?.map(tag => tag.toLowerCase()) || [];
 
             const matchesType = title.includes(answers.type?.toLowerCase()) ||
                 description.includes(answers.type?.toLocaleLowerCase()) ||
@@ -115,23 +128,29 @@ function Results() {
                     <h3 className='noto-serif-display-tag'>Daily routine</h3>
                     <p>Perfect for if youre looking for soft, nourished skin, our moisturizing body washes are made with skin-natural nutrients that work with your skin to replenish moisture. With a light formula, the bubbly lather leaves your skin feeling cleansed and cared for. And by choosing relaxing fragrances you can add a moment of calm to the end of your day.</p>
                 </div>
-                {sortProductsByLikes(filteredData).slice(startIndex, startIndex + 2).map((product, index) => (
-                    <div key={index} className="product">
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                            toggleLike={toggleLike}
-                            likedProducts={likedProducts} />
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {!error && filteredData.length > 0 && (
+                    <div className='products-container'>
+                        {sortProductsByLikes(filteredData).slice(startIndex, startIndex + 2).map((product) => (
+                            <div key={product.id} className="product">
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}
+                                    toggleLike={toggleLike}
+                                    likedProducts={likedProducts} />
+                            </div>
+                        ))}
+                        <button className='next' onClick={showNext}></button>
                     </div>
-                ))}
-                <button className='next' onClick={showNext}></button>
+                )}
             </section>
             <div className="page-indicators">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <div
                         key={index}
                         className={`page-indicator ${startIndex / 2 === index ? 'active' : ''}`}
-                    ></div>
+                    >
+                    </div>
                 ))}
             </div>
         </>

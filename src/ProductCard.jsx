@@ -1,3 +1,4 @@
+import './ProductCard.css';
 /* eslint-disable react/prop-types */
 function ProductCard({ product, toggleLike, likedProducts }) {
     if (!product) return null;

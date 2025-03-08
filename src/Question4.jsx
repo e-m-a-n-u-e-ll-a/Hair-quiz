@@ -10,7 +10,7 @@ function Question4() {
             nextLink='/question5'
             number="fourth"
             buttonValue="Next question"
-             buttonClass='next'
+            buttonClass='next'
         />
     );
 }

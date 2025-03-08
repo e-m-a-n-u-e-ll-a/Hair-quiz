@@ -96,6 +96,38 @@ input {
     }
 
     form {
-        margin-bottom: 200px;
+        margin: 100px 0;
+    }
+
+    input {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .progress-bar {
+        margin-top: 100px;
+    }
+
+    .progress-bar.first {
+        right: 50px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .outer {
+        margin-top: 100px;
+    }
+
+    input {
+        width: 80%;
+        font-size: 12px;
+    }
+
+    .progress-bar {
+        margin-top: 200px;
+    }
+
+    .buttons {
+        width: 90%;
     }
 }
